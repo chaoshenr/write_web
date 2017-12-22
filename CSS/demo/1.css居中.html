@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CSS居中总结</title>
+<style>
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	h3 {
+		padding: 10px;
+	}
+	h4 {
+		padding: 4px 20px;
+	}
+	/*1.文本水平垂直居中*/
+	.text_center {
+		height: 100px;
+		width: 100%;
+
+		line-height: 100px;
+		text-align: center;
+		background: green;
+	}
+
+	.box_center {
+		width: 300px;
+		height: 300px;
+
+		margin: 20px auto;
+		/*等价于
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 20px;
+		*/
+		background: #888;
+	}
+	.box_center .box_content {
+		height: 120px;
+		width: 130px;
+		/*计算
+		padding-top = (300 - 120) / 2
+		padding-bottom同理
+		padding-left = (300 - 130) / 2
+		padding-fight同理
+		*/
+		padding: 90px 85px;
+
+		background-color: green;
+		background-clip: content-box;
+	}
+
+	.calc_center {
+		width: 300px;
+		height: 300px;
+		margin: 20px auto;
+		background-color: #999;
+	}
+	.calc_center .calc_content {
+		width: 100px;
+		height: 100px;
+		padding: -webkit-calc((100% - 100px) / 2);
+    	padding: -moz-calc((100% - 100px) / 2);
+    	padding: -ms-calc((100% - 100px) / 2);
+    	padding: calc((100% - 100px) / 2);
+		background-color: #333;
+		background-clip: content-box;
+	}
+
+	.margin_center {
+		width: 200px;
+		height: 200px;
+		/*margin-left: auto;
+		margin-right: auto;*/
+		overflow: hidden;
+		margin-left: auto;
+		margin-right: auto;
+		background-color: #999;
+	}
+	.margin_center .margin_content {
+		margin-left: auto;
+		margin-right: auto;
+		
+		width: 100px;
+		height: 100px;
+		
+		margin-top: 50px;
+		background-color: green;
+	}
+
+	.absolute_margin_center {
+		width: 200px;
+		height: 200px;
+		background-color: #888;
+		position: relative;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.absolute_margin_center .absolute_margin_content {
+		width: 100px;
+		height: 100px;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		margin-top: -50px;
+		margin-left: -50px;
+		background-color: green;
+
+	}
+	.absolute_transform_center {
+		margin-left: auto;
+		margin-right: auto;
+		width: 200px;
+		height: 200px;
+		background-color: #888;
+		position: relative;
+	}
+	.absolute_transform_center .absolute_transform_content {
+		width: 100px;
+		height: 100px;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		background-color: green;
+
+	}
+</style>
+</head>
+<body>
+	<h3>1.文本水平垂直居中</h3>
+	<div class="text_center">这是一个文本水平垂直居中样例</div>
+	<h3>2.盒模型的水平垂直居中</h3>
+	<h4>(1)margin(左右外边距auto) + padding 填充</h4>
+	<div class="box_center">
+		<div class="box_content"></div>
+	</div>
+
+	<h4>(2)calc动态计算 + padding 填充</h4>	
+	<div class="calc_center">
+		<div class="calc_content"></div>
+	</div>
+
+	<h4>(3)margin 填充</h4>	
+	<div class="margin_center">
+		<div class="margin_content"></div>
+	</div>
+
+	<h3>3.absolute水平垂直居中</h3>
+	<h4>(1)absolue + margin</h4>
+	<div class="absolute_margin_center">
+		<div class="absolute_margin_content"></div>
+	</div>
+	<h4>(1)absolue + transform</h4>
+	<div class="absolute_transform_center">
+		<div class="absolute_transform_content"></div>
+	</div>
+
+</body>
+</html>
