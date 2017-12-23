@@ -185,7 +185,7 @@ text-align: center;
 
 transform: translate(-50%, -50%);
 ```
-### 3.fixed视口水平垂直居中
+### 4.fixed视口水平垂直居中
 
 ```
 <div class="fixed_center">视口居中</div>
@@ -206,5 +206,50 @@ transform: translate(-50%, -50%);
 }
 ```
 
+### 5.flexbox布局水平垂直居中
+
+```
+<div class="flexbox_center">
+	<div class="flexbox_content"></div>
+</div>
+
+.flexbox_center {
+	/*旧版语法*/
+	display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    /*新版语法*/
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+	/*注意，设为 Flex 布局以后，子元素的float、clear和vertical-align属性将失效。*/
+	width: 300px;
+	height: 300px;
+	background-color: #888;
+	/*新主轴对齐方式*/
+	justify-content: center;/*水平方向居中*/
+	-moz-justify-content: center;
+	-webkit-justify-content: center;
+	/*旧主轴对齐方式*/
+	-moz-box-pack: center; /*Firefox*/
+    -webkit-box-pack: center; /*Safari,Opera,Chrome*/
+    box-pack: center;
+
+    /*新交叉轴对齐方式*/
+	align-items: center;/*垂直方向居中*/
+	-moz-align-items: center;
+	-webkit-align-items: center;
+	/*旧交叉轴对齐方式*/
+	-moz-box-align: center;
+	-webkit-box-align: center;
+	box-align: center;
+
+}
+.flexbox_center .flexbox_content {
+	width: 100px;
+	height: 100px;
+	background-color: red;
+}
+```
+提示：如果无需兼容低版本浏览器（如IE10以下），那么使用该方案是最便捷和稳妥的方式，且便于维护
 
 
