@@ -10,13 +10,13 @@ text-align: center;
 <div class="text_center">这是一个文本水平垂直居中样例</div>
 
 .text_center {
-	height: 100px;
-	width: 100%;
+height: 100px;
+width: 100%;
 
-	line-height: 100px;
-	text-align: center;
+line-height: 100px;
+text-align: center;
 
-	background: green;
+background: green;
 }
 ```
 
