@@ -14,6 +14,17 @@
 	h4 {
 		padding: 4px 20px;
 	}
+	.wrapper {
+		width: 300px;
+		height: 300px;
+		background: #888;
+		margin: 20px auto;
+	}
+	.wapper .content {
+		height: 100px;
+		width: 100px;
+		background-color: #333;
+	}
 	/*1.文本水平垂直居中*/
 	.text_center {
 		height: 100px;
@@ -88,7 +99,25 @@
 		margin-top: 50px;
 		background-color: green;
 	}
-
+	.absolute_center {
+		width: 300px;
+		height: 300px;
+		background-color: #888;
+		margin: 20px auto;
+		position: relative;
+		overflow: auto;
+	}
+	.absolute_center .absolute_content {
+		width: 100px;
+		height: 100px;
+		position: absolute;
+		margin: auto;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		background-color: green;
+	}
 	.absolute_margin_center {
 		width: 200px;
 		height: 200px;
@@ -108,6 +137,7 @@
 		background-color: green;
 
 	}
+
 	.absolute_transform_center {
 		margin-left: auto;
 		margin-right: auto;
@@ -126,6 +156,23 @@
 		background-color: green;
 
 	}
+
+	.fixed_center {
+		position: fixed;
+		width: 200px;
+		height: 200px;
+		background-color: red;
+		opacity: .6;
+		margin: auto;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		line-height: 200px;
+		text-align: center;
+	}
+
+
 </style>
 </head>
 <body>
@@ -148,14 +195,21 @@
 	</div>
 
 	<h3>3.absolute水平垂直居中</h3>
-	<h4>(1)absolue + margin</h4>
+	<h4>(1)absolue居中</h4>
+	<div class="absolute_center wrapper">
+		<div class="absolute_content content"></div>
+	</div>
+	<h4>(2)absolue + margin</h4>
 	<div class="absolute_margin_center">
 		<div class="absolute_margin_content"></div>
 	</div>
-	<h4>(1)absolue + transform</h4>
+	<h4>(3)absolue + transform</h4>
 	<div class="absolute_transform_center">
 		<div class="absolute_transform_content"></div>
 	</div>
+
+	<h3>4.fixed视口水平垂直居中</h3>
+	<div class="fixed_center">视口居中</div>
 
 </body>
 </html>

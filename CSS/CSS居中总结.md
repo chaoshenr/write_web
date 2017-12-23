@@ -76,9 +76,9 @@ text-align: center;
 	width: 100px;
 	height: 100px;
 	padding: -webkit-calc((100% - 100px) / 2);
-    padding: -moz-calc((100% - 100px) / 2);
-    padding: -ms-calc((100% - 100px) / 2);
-    padding: calc((100% - 100px) / 2); 
+	padding: -moz-calc((100% - 100px) / 2);
+	padding: -ms-calc((100% - 100px) / 2);
+	padding: calc((100% - 100px) / 2); 
 	background-color: #333;
 	background-clip: content-box;
 }
@@ -106,10 +106,10 @@ text-align: center;
 .margin_center .margin_content {
 	margin-left: auto;
 	margin-right: auto;
-	
+
 	width: 100px;
 	height: 100px;
-	
+
 	margin-top: 50px;
 	background-color: green;
 }
@@ -122,10 +122,11 @@ text-align: center;
     等等
 ```
 
-### 3.absolute布局
+### 3.absolute布局水平垂直居中
 利用left：50%将盒子的左边先置于父容器的中点，然后再将盒子往左偏移盒子自身宽度的50%，即 50% + -50%
 #### (1)absolue + margin填充
 ```
+方式1
 <div class="absolute_margin_center">
 	<div class="absolute_margin_content"></div>
 </div>
@@ -148,8 +149,35 @@ text-align: center;
 	margin-left: -50px;
 	background-color: green;
 }
+
+方式2
+<!-- 视口居中同理 -->
+<div class="absolute_center">
+	<div class="absolute_content"></div>
+</div>
+
+.absolute_center {
+	width: 300px;
+	height: 300px;
+	background-color: #888;
+	margin: 20px auto;
+	position: relative;
+	overflow: auto;
+}
+.absolute_center .absolute_content {
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	margin: auto;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	background-color: green;
+}
+
 ```
-提示：方案兼容性很好，适合内容宽高固定的布局，并且需要人工计算外边距，不便于后期维护。
+提示：方式1和2兼容性很好，适合内容宽高固定的布局，方式1需要人工计算外边距，不便于后期维护。方式2不许人工计算偏移量，较好。
 
 #### (2)absolue + transform转换
 ```
@@ -157,5 +185,26 @@ text-align: center;
 
 transform: translate(-50%, -50%);
 ```
+### 3.fixed视口水平垂直居中
+
+```
+<div class="fixed_center">视口居中</div>
+
+.fixed_center {
+	position: fixed;
+	width: 200px;
+	height: 200px;
+	background-color: red;
+	opacity: .6;
+	margin: auto;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	line-height: 200px;
+	text-align: center;
+}
+```
+
 
 
