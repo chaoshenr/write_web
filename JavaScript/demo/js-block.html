@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>闭包示例</title>
+</head>
+<body>
+ <script type="text/javascript">
+ 	C();
+
+ 	function A() {
+ 		var a_innerVar = "A";
+ 		function B(arg) {
+	 		console.log("我能访问 " + a_innerVar + " 作用域中的变量");
+	 		console.log("我也能使用 " + arg + " 作用域中的变量");
+	 	}
+ 		return B
+ 	}
+
+ 	function C() {
+ 		var c_innerVar = "C";
+ 		var bFunc = A();
+ 		bFunc(c_innerVar);
+
+ 	}
+ 	
+ </script>
+</body>
+</html>
