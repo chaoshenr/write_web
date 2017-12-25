@@ -6,24 +6,39 @@
 </head>
 <body>
  <script type="text/javascript">
- 	C();
+ 	// C();
 
- 	function A() {
- 		var a_innerVar = "A";
- 		function B(arg) {
-	 		console.log("我能访问 " + a_innerVar + " 作用域中的变量");
-	 		console.log("我也能使用 " + arg + " 作用域中的变量");
-	 	}
- 		return B
- 	}
+ 	// function A() {
+ 	// 	var a_innerVar = "A";
+ 	// 	function B(arg) {
+	 // 		console.log("我能访问 " + a_innerVar + " 作用域中的变量");
+	 // 		console.log("我也能使用 " + arg + " 作用域中的变量");
+	 // 	}
+ 	// 	return B
+ 	// }
 
- 	function C() {
- 		var c_innerVar = "C";
- 		var bFunc = A();
- 		bFunc(c_innerVar);
+ 	// function C() {
+ 	// 	var c_innerVar = "C";
+ 	// 	var bFunc = A();
+ 	// 	bFunc(c_innerVar);
 
- 	}
+ 	// }
  	
+ </script>
+ <script type="text/javascript">
+ 	function A(fn) {
+ 		var a_innerVar = "A";
+ 		console.log("你好我是 A");
+ 		fn("jinchao");
+ 	}
+ 	C();
+ 	function C() {
+ 		var c_innerVar = "C"
+ 		A(function B(arg) {
+			console.log("你好, " + arg + "，我是 B");
+			console.log("此时我在 "+ c_innerVar + " 的内部")
+		})
+ 	}
  </script>
 </body>
 </html>
