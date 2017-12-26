@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>首页</title>
+</head>
+<body>
+	<h1>home page</h1>
+	<button id="btn">点我请求</button>
+<script type="text/javascript">
+	var btn = document.getElementById('btn');
+	btn.onclick = function () {
+		var request = {
+			url: "http://localhost:8888/api",
+			method: "GET",
+			async: true
+		}
+		ajax(request, function (response) {
+			console.log(response);
+		})
+	}
+	function ajax(requestObj, callback) {
+		var xhr = new XMLHttpRequest();
+		var xhrDONE = 4;//请求结束标识符
+		var xhrOK = 200;//请求成功标示附
+		var method = requestObj.method ? requestObj.method : "GET";
+		var url = requestObj.url;
+		var async = requestObj.async == "undefined" ? true : requestObj.async
+		xhr.onreadystatechange = function () {
+			if(xhr.readyState === xhrDONE && xhr.status === xhrOK) {
+			    callback(JSON.parse(xhr.response));
+			}
+		}
+		xhr.open(method, url, async);
+		if (method === "POST") {
+			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhr.send(requestObj.data);
+		}else {
+			xhr.send();
+		}	
+		
+	}
+</script>
+</body>
+</html>
