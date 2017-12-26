@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>优雅的Promise</title>
+</head>
+<body>
+
+<script type="text/javascript">
+	/*
+	*request:{
+	*	method:"GET or POST", 
+	*	url: "request_url", 
+	*	async: "true or false"
+	*}
+	*/
+	function xhrRequest(request, fn) {
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			if (xhr.readyState === 4 && xhr.status === 200) {
+				fn(xhr.response);
+			}
+		}
+		xhr.open(request.type,request.url);
+		xhr.send();
+	}
+</script>
+</body>
+</html>
