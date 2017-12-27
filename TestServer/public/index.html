@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>首页</title>
+	<title>ajax验证</title>
 </head>
 <body>
 	<h1>home page</h1>
@@ -16,6 +16,7 @@
 		}
 		ajax(request, function (response) {
 			console.log(response);
+			console.log()
 		})
 	}
 	function ajax(requestObj, callback) {
@@ -27,6 +28,8 @@
 		var async = requestObj.async == "undefined" ? true : requestObj.async
 		xhr.onreadystatechange = function () {
 			if(xhr.readyState === xhrDONE && xhr.status === xhrOK) {
+				console.log(xhr.responseText)
+				console.log(xhr.responseXML);
 			    callback(JSON.parse(xhr.response));
 			}
 		}
@@ -39,6 +42,7 @@
 		}	
 		
 	}
+
 </script>
 </body>
 </html>

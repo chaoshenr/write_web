@@ -19,26 +19,30 @@
 			})
 		}
 		function ajax(requestObj, callback) {
+			// 1.实例化XMLHttpRequest对象
 			var xhr = new XMLHttpRequest();
-			var xhrDONE = 4;//请求结束标识符
+			
+			var xhrDONE = 4;//请求完成标示
 			var xhrOK = 200;//请求成功标示附
-			var method = requestObj.method ? requestObj.method : "GET";
-			var url = requestObj.url;
-			var async = requestObj.async == "undefined" ? true : requestObj.async
+			// 2.初始化请求参数（并不发送请求）
+			xhr.open("GET", "http://localhost:8888/api", true);
+			// 3.发送 HTTP 请求，使用传递给 open() 方法的参数，以及传递给该方法的可选请求体。
+			xhr.send();
+			// 4.监听每次请求状态的变化，
 			xhr.onreadystatechange = function () {
 				if(xhr.readyState === xhrDONE && xhr.status === xhrOK) {
-				    callback(JSON.parse(xhr.response));
+				    console.log(xhr.response);
 				}
 			}
-			xhr.open(method, url, async);
-			if (method === "POST") {
-				xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-				xhr.send(requestObj.data);
-			}else {
-				xhr.send();
-			}	
+				
 			
 		}
+		// // if (method === "POST") {
+			// 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			// 	xhr.send(requestObj.data);
+			// }else {
+				
+			// }
 	</script>
 </body>
 </html>
