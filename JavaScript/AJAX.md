@@ -60,12 +60,16 @@ xhr.onreadystatechange = function () {
 	
 	var xhrDONE = 4;//请求完成标示
 	var xhrOK = 200;//请求成功标示附
+
 	// 2.初始化请求参数（并不发送请求）
 	xhr.open("GET", "http://localhost:8888/api", true);
+
 	// 3.发送 HTTP 请求，使用传递给 open() 方法的参数，以及传递给该方法的可选请求体。
 	xhr.send(); //POST时 xhr.send(data);
+
 	// 4.监听每次请求状态的变化，直到请求完成
 	xhr.onreadystatechange = function () {
+		
 		if(xhr.readyState === xhrDONE && xhr.status === xhrOK) {
 		    console.log(xhr.response);
 		}

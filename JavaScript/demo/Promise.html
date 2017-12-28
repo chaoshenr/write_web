@@ -6,6 +6,58 @@
 <body>
 
 <script type="text/javascript">
+	
+	// function request1(data) {
+	// 	return new Promise(function (resolve, reject) {
+	// 		setTimeout(function () {
+	// 			if (data) {
+	// 				resolve("request1 success");
+	// 			}else{
+	// 				reject("request1 error");
+	// 			}
+	// 		},500)
+	// 	})
+						
+	// }
+	function request2(data) {
+		return new Promise(function (resolve, reject) {
+			setTimeout(function () {
+				if (data) {
+					console.log("request2 success")
+					resolve("request2 success");
+				}else{
+					reject("request2 error");
+				}
+			},700)
+		})	
+	}
+	function request3(data) {
+		return new Promise(function (resolve, reject) {
+			setTimeout(function () {
+				if (data) {
+					console.log("request3 success")
+					resolve("request3 success");
+				}else{
+					reject("request3 error");
+				}
+			},800)
+		})	
+	}
+	var request1 = new Promise(function (resolve, reject) {
+		var data = "1";
+		setTimeout(function () {
+			if (data) {
+				console.log("request1 success")
+				resolve("request1 success");
+			}else{
+				reject("request1 error");
+			}
+		},500)
+	});
+	request1
+		.then(request2)
+		.then(request3);
+	
 	/*
 	*request:{
 	*	method:"GET or POST", 
@@ -13,16 +65,16 @@
 	*	async: "true or false"
 	*}
 	*/
-	function xhrRequest(request, fn) {
-		var xhr = new XMLHttpRequest();
-		xhr.onreadystatechange = function(){
-			if (xhr.readyState === 4 && xhr.status === 200) {
-				fn(xhr.response);
-			}
-		}
-		xhr.open(request.type,request.url);
-		xhr.send();
-	}
+	// function xhrRequest(request, fn) {
+	// 	var xhr = new XMLHttpRequest();
+	// 	xhr.onreadystatechange = function(){
+	// 		if (xhr.readyState === 4 && xhr.status === 200) {
+	// 			fn(xhr.response);
+	// 		}
+	// 	}
+	// 	xhr.open(request.type,request.url);
+	// 	xhr.send();
+	// }
 </script>
 </body>
 </html>
