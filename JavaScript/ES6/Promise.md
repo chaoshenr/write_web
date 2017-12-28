@@ -10,10 +10,10 @@
 request1(function (res1) {
 	console.log(res1);
 
-	request1(function (res2) {
+	request2(function (res2) {
 		console.log(res2);
 
-		request2(function (res3) {
+		request3(function (res3) {
 			console.log(res3);
 		})
 	})
