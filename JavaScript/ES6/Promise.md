@@ -4,7 +4,7 @@
 3.异步编程的解决方案，使得异步函数以同步的方式表示，避免了传统异步处理的回调地狱。    
 
 ### 回顾我们曾经一度使用的回调
-首先我们模拟一个场景，比如我们要发起三个网络请求，request1、request2，request3依赖于request1的请求完成才能发起请求，request3依赖于request2的请求完成。按照以前我们实现异步回调的方式，如下：
+首先我们模拟一个场景，比如我们要发起三个网络请求，request1、request2，request3。request2依赖于request1的请求完成才能发起请求，request3依赖于request2的请求完成。按照以前我们实现异步回调的方式，如下：
 示例1：   
 ```
 request1(function (res1) {
