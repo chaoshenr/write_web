@@ -7,22 +7,29 @@
 
 <script type="text/javascript">
 	
-	// function request1(data) {
-	// 	return new Promise(function (resolve, reject) {
-	// 		setTimeout(function () {
-	// 			if (data) {
-	// 				resolve("request1 success");
-	// 			}else{
-	// 				reject("request1 error");
-	// 			}
-	// 		},500)
-	// 	})
-						
-	// }
+	var request1 = new Promise(function (resolve, reject) {
+		var data = "1";
+		setTimeout(function () {
+			if (data) {
+				console.log("request1 success")
+				resolve("request1 success");
+			}else{
+				reject("request1 error");
+			}
+		},500)
+	});
+	request1
+		.then(request2)
+		.then(request3)
+		.catch(function (err) {
+			console.log("recieve err")
+			console.log(err);
+		})
+		
 	function request2(data) {
 		return new Promise(function (resolve, reject) {
 			setTimeout(function () {
-				if (data) {
+				if (!data) {
 					console.log("request2 success")
 					resolve("request2 success");
 				}else{
@@ -43,38 +50,42 @@
 			},800)
 		})	
 	}
-	var request1 = new Promise(function (resolve, reject) {
-		var data = "1";
-		setTimeout(function () {
-			if (data) {
-				console.log("request1 success")
-				resolve("request1 success");
-			}else{
-				reject("request1 error");
-			}
-		},500)
+</script>
+<script type="text/javascript">
+	// demo2
+	var data = {"name": "chaoshen"};
+	var promise = new Promise(function (resolve, reject) {
+		if (data) {
+			resolve(data);
+		}else{
+			reject("promise is error")
+		}
+
 	});
-	request1
-		.then(request2)
-		.then(request3);
-	
-	/*
-	*request:{
-	*	method:"GET or POST", 
-	*	url: "request_url", 
-	*	async: "true or false"
-	*}
-	*/
-	// function xhrRequest(request, fn) {
-	// 	var xhr = new XMLHttpRequest();
-	// 	xhr.onreadystatechange = function(){
-	// 		if (xhr.readyState === 4 && xhr.status === 200) {
-	// 			fn(xhr.response);
-	// 		}
-	// 	}
-	// 	xhr.open(request.type,request.url);
-	// 	xhr.send();
-	// }
+
+	function promise2(data) {
+		var pro = new Promise(function (resolve, reject) {
+			if (data) {
+				resolve(data);
+			}else{
+				reject("promise2 is error");
+			}
+		});
+		pro.jinchao = "jinchao";
+		return pro;
+	}
+	promise
+		.then(promise2)
+		// 监听promise2对象的成功事件
+		.then(function (data) {
+			console.log(" recieve promise2's data");
+			console.log(data);
+		})
+		// 监听所有promise对象的异常，如果某个promise对象then属性中传入两个回调函数（即第二个函数已是监听异常函数），那么当该promise发生异常时只会触发其then内部的异常函数，catch将不会被触发。
+		.catch(function (err) {
+			console.log(err);
+		})
+	// 
 </script>
 </body>
 </html>

@@ -97,9 +97,82 @@ Promise存在以下三种状态：
 `pending`: 初始化状态，操作未fullied(完成)或者reject(失败)   
 `fulfilled`: 操作成功完成   
 `rejected`: 操作失败   
-一个处于pending状态的Promise对象，随时可能会在成功(fulfilled)时返回一个值，也可能失败(rejected)是返回原因。无论是成功或者失败，只要触发了，Promise 的 then方法关联的事件队列将会被执行，如下图：
+一个处于pending状态的Promise对象，随时可能会在成功(fulfilled)时返回一个值，也可能失败(rejected)是返回原因。无论是成功或者失败，只要触发了，Promise 的 then方法关联的事件队列将会被执行，不管成功或者失败，二者只会被触发其中一个（要么成功，要么失败），所以两种情况下触发的then不存在冲突，如下图：
 
 <img src="../images/promise.png">
+
+从图片里面可以看出Promise的执行逻辑：   
+#### 1.初始化Promise对象(pendding状态)。
+```
+var promise = new Promise(function(resolve, reject){
+
+})
+```   
+#### 2.异步成功(fulfill，调用resolve(data))或者失败(reject，调用reject(err))。
+```
+var data = {"name": "chaoshen"};
+var promise = new Promise(function (resolve, reject) {
+	if (data) {
+		//数据正常时
+		resolve(data);
+	}else{
+		//数据异常时
+		reject("data is error!")
+	}
+
+});
+
+```   
+#### 3.设置异步结果监听then(成功或者失败时触发)或者catch(失败时触发)
+```
+promise
+	.then(function (data) {
+		// 成功时触发
+		console.log(data);
+	}, function (err) {
+		// 失败时触发，只监听当前promise对象的异常
+		console.log("1"+err);
+	})
+	// 监听所有promise对象的异常，如果某个promise对象then属性中传入两个回调函数（即第二个函数已是监听异常函数），那么当该promise发生异常时只会触发其then内部的异常函数，catch将不会被触发。
+	.catch(function (err) {
+		console.log(err);
+	})
+
+
+```
+
+#### 4.如果存在异步嵌套的话，Promise可以这样使用
+```
+<!-- 将第3步代码替换为如下 -->
+
+promise
+	.then(promise2)
+
+	// 此时then监听的是promise2对象，因为上面promise2函数触发后返回了一个新的promise对象
+	.then(function (data) {
+		console.log(" recieve promise2's data");
+		console.log(data);
+	})
+
+	// catch 监听所有promise对象的异常，如果某个promise对象then属性中传入两个回调函数（即第二个函数已是监听异常函数），那么当该promise发生异常时只会触发其then内部的异常函数，catch将不会被触发。
+	.catch(function (err) {
+		console.log(err);
+	})
+
+function promise2(data) {
+	<!-- 返回Promise对象，将上下文切换为新的Promise对象 -->
+	return new Promise(function (resolve, reject) {
+		if (data) {
+			resolve(data);
+		}else{
+			reject("promise2 is error");
+		}
+	})
+}
+
+```
+
+
 
 
 
