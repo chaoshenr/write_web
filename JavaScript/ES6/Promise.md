@@ -102,13 +102,13 @@ Promise存在以下三种状态：
 <img src="../images/promise.png">
 
 从图片里面可以看出Promise的执行逻辑：   
-#### 1.初始化Promise对象(pendding状态)。
+##### 1.初始化Promise对象(pendding状态)。
 ```
 var promise = new Promise(function(resolve, reject){
 
 })
 ```   
-#### 2.异步成功(fulfill，调用resolve(data))或者失败(reject，调用reject(err))。
+##### 2.异步成功(fulfill，调用resolve(data))或者失败(reject，调用reject(err))。
 ```
 var data = {"name": "chaoshen"};
 var promise = new Promise(function (resolve, reject) {
@@ -123,7 +123,7 @@ var promise = new Promise(function (resolve, reject) {
 });
 
 ```   
-#### 3.设置异步结果监听then(成功或者失败时触发)或者catch(失败时触发)
+##### 3.设置异步结果监听then(成功或者失败时触发)或者catch(失败时触发)
 ```
 promise
 	.then(function (data) {
@@ -141,7 +141,7 @@ promise
 
 ```
 
-#### 4.如果存在异步嵌套的话，Promise可以这样使用
+##### 4.如果存在异步嵌套的话，Promise可以这样使用
 ```
 <!-- 将第3步代码替换为如下 -->
 
@@ -171,6 +171,8 @@ function promise2(data) {
 }
 
 ```
+#### 方法
+Promise.all(iterable)
 
 
 
